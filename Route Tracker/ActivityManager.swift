@@ -11,10 +11,17 @@ import CoreLocation
 
 class ActivityManager: NSObject, CLLocationManagerDelegate {
     
+    var isTracking: Bool { return routeActivity.active }
+    
     private let locationManager = CLLocationManager()
     
     private var currentLocation: CLLocation!
-    private let routeActivity = RouteActivity()
+    private var routeActivity: RouteActivity!
+    
+    var laps: [Lap] { return routeActivity.laps }
+    var duration: TimeInterval { return routeActivity.duration ?? 0 }
+    var currentLapDuration: TimeInterval? { return routeActivity.currentLap?.duration }
+    var distance: Double { return routeActivity.distance }
     
     override init() {
         super.init()
@@ -31,22 +38,31 @@ class ActivityManager: NSObject, CLLocationManagerDelegate {
         locationManager.requestLocation()
     }
     
-    func startActivity() -> Bool {
+    func startActivity() {
+        routeActivity = RouteActivity()
         locationManager.startUpdatingLocation()
-        guard let location = currentLocation else { return false }
+        guard let location = currentLocation else { return }
         routeActivity.newLap(location: location)
-        return true
     }
     
     func pauseActivity() {
         locationManager.stopUpdatingLocation()
+        routeActivity.pause()
     }
     
-    func endActivity() -> Bool {
-        guard let location = currentLocation else { return false }
+    func resumeActivity() {
+        locationManager.startUpdatingLocation()
+        routeActivity.resume()
+    }
+    
+    func newLap() {
+        routeActivity.logLap(currentLocation: currentLocation)
+    }
+    
+    func endActivity() {
+        guard let location = currentLocation else { return }
         routeActivity.end(location: location)
         locationManager.stopUpdatingLocation()
-        return true
     }
     
     private var authorized: Bool {

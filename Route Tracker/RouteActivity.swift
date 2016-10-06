@@ -11,12 +11,19 @@ import CoreLocation
 
 class RouteActivity {
     
-    private var laps: [Lap] = []
-    
+    private (set) var laps: [Lap] = []
     
     func newLap(location: CLLocation, startTime: Date = Date()) {
         let lap = Lap(startTime: startTime, startPosition: location)
         laps.append(lap)
+    }
+    
+    func pause() {
+        currentLap?.pause()
+    }
+    
+    func resume() {
+        currentLap?.resume()
     }
     
     func end(location: CLLocation) {
@@ -29,12 +36,12 @@ class RouteActivity {
     
     func logLap(currentLocation: CLLocation) {
         currentLap?.end(finalPosition: currentLocation)
-        guard let time = currentLap?.endedAt else { fatalError("Current lap: \(currentLap), should have an end time") }
+        guard let time = lastLap?.endedAt else { fatalError("Current lap: \(currentLap), should have an end time") }
         newLap(location: currentLocation, startTime: time)
     }
     
     var active: Bool {
-        return endedAt == nil
+        return startedAt != nil && endedAt == nil
     }
     
     var startedAt: Date? {
@@ -45,9 +52,22 @@ class RouteActivity {
         return laps.last?.endedAt
     }
     
+    var pausedTime: TimeInterval {
+        var total: TimeInterval = 0
+        for lap in laps { total += lap.pausedTime }
+        return total
+    }
+    
+    var distance: Double {
+        var total: Double = 0
+        for lap in laps { total += lap.distance }
+        return total
+    }
+    
     var duration: TimeInterval? {
-        guard let start = startedAt, let end = endedAt else { return nil }
-        return end.timeIntervalSince(start)
+        guard let start = startedAt else { return nil }
+        let end = endedAt ?? Date()
+        return end.timeIntervalSince(start) - pausedTime
     }
     
     var startPosition: CLLocation? {
