@@ -9,12 +9,72 @@
 import UIKit
 import MapKit
 
+enum GoalType {
+    case basic
+    case distance
+    case time
+    
+    var title: String {
+        switch self {
+        case .basic:
+            return "Basic"
+        case .distance:
+            return "Distance"
+        case .time:
+            return "Time"
+        }
+    }
+}
+
 class RouteTrackingViewController: UIViewController {
     @IBOutlet weak var rightButton: OvalButton! { didSet { rightButton.delegate = self } }
     @IBOutlet weak var leftButton: OvalButton! { didSet { leftButton.delegate = self } }
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var timeDisplay: UILabel!
+    @IBOutlet weak var activityTypeBarButton: UIBarButtonItem!
+    
+    var goal: GoalType = .basic { didSet { title = goal.title } }
+    var goalValue: Double!
+    
+    @IBAction func activityTypeButtonTapped(_ sender: UIBarButtonItem) {
+        let activityTypeAlert = UIAlertController(title: "Choose Goal", message: nil, preferredStyle: .actionSheet)
+        activityTypeAlert.addAction(UIAlertAction(title: "Basic", style: .default, handler: {_ in
+            self.goal = .basic
+        }))
+        activityTypeAlert.addAction(UIAlertAction(title: "Distance", style: .default, handler: {_ in
+            self.goal = .distance
+            self.presentGoalAlert(for: self.goal)
+        }))
+        activityTypeAlert.addAction(UIAlertAction(title: "Time", style: .default, handler: {_ in
+            self.goal = .time
+            self.presentGoalAlert(for: self.goal)
+        }))
+        
+        present(activityTypeAlert, animated: true, completion: nil)
+    }
+    
+    private func presentGoalAlert(for type: GoalType) {
+        
+        let alert = UIAlertController(title: "Set Goal", message: "Choose a \(type.title)", preferredStyle: .alert)
+        alert.addTextField(configurationHandler: { textField in
+            textField.delegate = self
+            textField.keyboardType = .numberPad
+            textField.returnKeyType = .done
+        })
+        
+        alert.addAction(UIAlertAction(title: "Done", style: .default, handler: { _ in
+           alert.textFields?.first?.resignFirstResponder()
+        }))
+        
+        if type == .distance {
+            alert.title = "Set Goal (in km)"
+        } else {
+            alert.title = "Set Goal (in minutes)"
+        }
+        
+        present(alert, animated: true, completion: nil)
+    }
     
     var gpsHorizontalAccuracy: Double = 100
     
@@ -49,7 +109,11 @@ class RouteTrackingViewController: UIViewController {
     
     private func startDisplayTimer() {
         timer = Timer.scheduledTimer(withTimeInterval: 0.001, repeats: true, block: { [unowned self] _ in
-            self.timeDisplay.text = TimerValue(seconds: self.routeTracker.duration).string
+            
+            var timeToDisplay: Double
+            self.goal == .time ? (timeToDisplay = self.goalValue - self.routeTracker.duration) : (timeToDisplay = self.routeTracker.duration)
+            
+            self.timeDisplay.text = TimerValue(seconds: timeToDisplay).string
             })
     }
     
@@ -153,8 +217,25 @@ extension RouteTrackingViewController: UITableViewDataSource {
 
 extension RouteTrackingViewController: ActivityManagerDelegate {
     func updateMap() {
+        
+        updateGoal()
+        
         guard routeTracker.isTracking else { return }
         mapView.add(routeTracker.routeActivity.routeDrawing)
+    }
+    
+    func updateGoal() {
+        var goalRemaining: Double
+        
+        if goal == .distance {
+            goalRemaining = goalValue - routeTracker.distance
+        } else {
+            goalRemaining = goalValue - routeTracker.duration
+        }
+        
+        if goalRemaining < 0 {
+            end()
+        }
     }
 }
 
@@ -189,5 +270,22 @@ struct TimerValue {
 extension TimeInterval {
     func timerValue() -> (Int, Int, Double) {
         return (Int(self / 3600.0), (Int(self) % 3600) / 60, self.truncatingRemainder(dividingBy: 60))
+    }
+}
+
+extension RouteTrackingViewController: UITextFieldDelegate {
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        guard let text = textField.text else { return }
+        
+        if text.isEmpty {
+            goalValue = 600
+            return
+        }
+        
+        if goal == .distance {
+            goalValue = Double(text)!
+        } else {
+            goalValue = Double(text)! * 60
+        }
     }
 }

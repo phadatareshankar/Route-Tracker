@@ -127,8 +127,15 @@
                             <constraint firstItem="Nyo-1L-PFK" firstAttribute="baseline" secondItem="l2g-pd-A0e" secondAttribute="baseline" constant="16" id="zzC-D0-3h4"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="pzv-tG-Qzw"/>
+                    <navigationItem key="navigationItem" id="pzv-tG-Qzw">
+                        <barButtonItem key="rightBarButtonItem" title="Basic" id="nKM-9R-1WP">
+                            <connections>
+                                <action selector="activityTypeButtonTapped:" destination="BYZ-38-t0r" id="X93-QM-a5o"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
+                        <outlet property="activityTypeBarButton" destination="nKM-9R-1WP" id="nEB-Ct-3Va"/>
                         <outlet property="leftButton" destination="JYi-O1-bRe" id="rrQ-jg-0EJ"/>
                         <outlet property="mapView" destination="Nyo-1L-PFK" id="D3N-fh-Geo"/>
                         <outlet property="rightButton" destination="Rjh-Gh-N1E" id="L3S-Ed-Olf"/>
@@ -153,7 +160,8 @@
                         <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="0ga-SC-sit">
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="0ga-SC-sit">
+                                <frame key="frameInset" width="1000" height="1000"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="0ga-SC-sit" secondAttribute="height" multiplier="1:1" constant="1" id="6u1-Qv-kFd"/>
                                 </constraints>

@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Route Tracker/RouteTrackingViewController.swift"
-            timestampString = "497976648.896628"
+            timestampString = "497979658.753405"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "190"
-            endingLineNumber = "190"
+            startingLineNumber = "271"
+            endingLineNumber = "271"
             landmarkName = "timerValue()"
             landmarkType = "7">
          </BreakpointContent>
@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Route Tracker/RouteTrackingViewController.swift"
-            timestampString = "497976648.896628"
+            timestampString = "497979658.753405"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "183"
-            endingLineNumber = "183"
+            startingLineNumber = "264"
+            endingLineNumber = "264"
             landmarkName = "TimerValue"
             landmarkType = "14">
          </BreakpointContent>
@@ -42,11 +42,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Route Tracker/RouteTrackingViewController.swift"
-            timestampString = "497976407.911226"
+            timestampString = "497979658.753405"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "102"
-            endingLineNumber = "102"
+            startingLineNumber = "166"
+            endingLineNumber = "166"
             landmarkName = "buttonTapped(button:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -80,6 +80,22 @@
             startingLineNumber = "106"
             endingLineNumber = "106"
             landmarkName = "locationManager(_:didUpdateLocations:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Route Tracker/RouteTrackingViewController.swift"
+            timestampString = "497979720.677948"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "156"
+            endingLineNumber = "156"
+            landmarkName = "buttonTapped(button:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
