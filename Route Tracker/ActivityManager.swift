@@ -9,14 +9,22 @@
 import Foundation
 import CoreLocation
 
+protocol ActivityManagerDelegate: class {
+    func updateMap()
+    var gpsHorizontalAccuracy: Double { get set }
+}
+
 class ActivityManager: NSObject, CLLocationManagerDelegate {
+    
+    weak var delegate: ActivityManagerDelegate?
     
     var isTracking: Bool { return routeActivity.active }
     
     private let locationManager = CLLocationManager()
     
     private var currentLocation: CLLocation!
-    private var routeActivity: RouteActivity!
+    private (set) var routeActivity = RouteActivity()
+    private var previousActivities: [RouteActivity] = []
     
     var laps: [Lap] { return routeActivity.laps }
     var duration: TimeInterval { return routeActivity.duration ?? 0 }
@@ -39,7 +47,6 @@ class ActivityManager: NSObject, CLLocationManagerDelegate {
     }
     
     func startActivity() {
-        routeActivity = RouteActivity()
         locationManager.startUpdatingLocation()
         guard let location = currentLocation else { return }
         routeActivity.newLap(location: location)
@@ -62,7 +69,15 @@ class ActivityManager: NSObject, CLLocationManagerDelegate {
     func endActivity() {
         guard let location = currentLocation else { return }
         routeActivity.end(location: location)
+        previousActivities.append(routeActivity)
+        routeActivity = RouteActivity()
         locationManager.stopUpdatingLocation()
+    }
+    
+    func getCompletedActivity() -> RouteActivity? {
+        guard let last = previousActivities.last else { return nil }
+        guard last.completed else { return nil }
+        return last
     }
     
     private var authorized: Bool {
@@ -89,6 +104,12 @@ class ActivityManager: NSObject, CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         currentLocation = locations.last
+
+        delegate?.gpsHorizontalAccuracy = currentLocation.horizontalAccuracy
+
+        guard currentLocation.horizontalAccuracy > 50 else { return }
+        
+        delegate?.updateMap()
         
         guard routeActivity.active else { return }
         guard locations.count > 0 else { return }

@@ -26,10 +26,21 @@ class WorkoutCompleteViewController: UIViewController {
         
         timeLabel.text = "Time: " + TimerValue(seconds: activity.duration ?? 0).string
         distanceLabel.text = "Distance: " + String(activity.distance / 1000.00) + " km"
+        setupMapView()
+    }
+    
+    private func setupMapView() {
+        mapView.delegate = self
+        mapView.add(activity.routeDrawing)
     }
 
 }
 
 extension WorkoutCompleteViewController: MKMapViewDelegate {
-    
+    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
+        let renderer = MKPolylineRenderer(overlay: overlay)
+        renderer.lineWidth = 10.0
+        renderer.strokeColor = UIColor.blue
+        return renderer
+    }
 }

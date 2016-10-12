@@ -7,8 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		908F6B6E1DAE62E000708900 /* mapstogpx20161012_122343.gpx in Resources */ = {isa = PBXBuildFile; fileRef = 908F6B6D1DAE62E000708900 /* mapstogpx20161012_122343.gpx */; };
 		90AC5FC51DA69CD500B3FF6F /* LapDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90AC5FC41DA69CD500B3FF6F /* LapDetailCell.swift */; };
 		90C1FD4F1DA642FD003A5CC1 /* OvalButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90C1FD4E1DA642FD003A5CC1 /* OvalButton.swift */; };
+		90CB0F301DAE5ABE004B1611 /* WorkoutCompleteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90CB0F2F1DAE5ABE004B1611 /* WorkoutCompleteViewController.swift */; };
 		90F714371DA50C6100002D5C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90F714361DA50C6100002D5C /* AppDelegate.swift */; };
 		90F714391DA50C6100002D5C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90F714381DA50C6100002D5C /* ViewController.swift */; };
 		90F7143C1DA50C6100002D5C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 90F7143A1DA50C6100002D5C /* Main.storyboard */; };
@@ -21,8 +23,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		908F6B6D1DAE62E000708900 /* mapstogpx20161012_122343.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = mapstogpx20161012_122343.gpx; sourceTree = "<group>"; };
 		90AC5FC41DA69CD500B3FF6F /* LapDetailCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LapDetailCell.swift; sourceTree = "<group>"; };
 		90C1FD4E1DA642FD003A5CC1 /* OvalButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OvalButton.swift; sourceTree = "<group>"; };
+		90CB0F2F1DAE5ABE004B1611 /* WorkoutCompleteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkoutCompleteViewController.swift; sourceTree = "<group>"; };
 		90F714331DA50C6000002D5C /* Route Tracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Route Tracker.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		90F714361DA50C6100002D5C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		90F714381DA50C6100002D5C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -50,6 +54,7 @@
 		90F7142A1DA50C6000002D5C = {
 			isa = PBXGroup;
 			children = (
+				908F6B6D1DAE62E000708900 /* mapstogpx20161012_122343.gpx */,
 				90F714351DA50C6000002D5C /* Route Tracker */,
 				90F714341DA50C6000002D5C /* Products */,
 			);
@@ -69,6 +74,7 @@
 				90F714361DA50C6100002D5C /* AppDelegate.swift */,
 				90F714381DA50C6100002D5C /* ViewController.swift */,
 				90F7143A1DA50C6100002D5C /* Main.storyboard */,
+				90CB0F2F1DAE5ABE004B1611 /* WorkoutCompleteViewController.swift */,
 				90F714481DA5106700002D5C /* RouteTrackingViewController.swift */,
 				90F7143D1DA50C6100002D5C /* Assets.xcassets */,
 				90AC5FC41DA69CD500B3FF6F /* LapDetailCell.swift */,
@@ -142,6 +148,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				908F6B6E1DAE62E000708900 /* mapstogpx20161012_122343.gpx in Resources */,
 				90F714411DA50C6100002D5C /* LaunchScreen.storyboard in Resources */,
 				90F7143E1DA50C6100002D5C /* Assets.xcassets in Resources */,
 				90F7143C1DA50C6100002D5C /* Main.storyboard in Resources */,
@@ -159,6 +166,7 @@
 				90F714391DA50C6100002D5C /* ViewController.swift in Sources */,
 				90F7144F1DA526B900002D5C /* ActivityManager.swift in Sources */,
 				90F7144B1DA5120B00002D5C /* Lap.swift in Sources */,
+				90CB0F301DAE5ABE004B1611 /* WorkoutCompleteViewController.swift in Sources */,
 				90F714371DA50C6100002D5C /* AppDelegate.swift in Sources */,
 				90C1FD4F1DA642FD003A5CC1 /* OvalButton.swift in Sources */,
 				90AC5FC51DA69CD500B3FF6F /* LapDetailCell.swift in Sources */,

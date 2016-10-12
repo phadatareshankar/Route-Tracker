@@ -26,17 +26,17 @@ class Lap {
     
     var waypoints: [CLLocation]
     
-    var distance: Double {
+    var distance: Int {
         var total: Double = 0
         
         for (i, waypoint) in waypoints.enumerated() {
-            if i + 1 <= waypoints.endIndex {
+            if i + 1 < waypoints.endIndex {
                 let increment = waypoint.distance(from: waypoints[i + 1])
                 total += increment
             }
         }
         
-        return total
+        return Int(total.rounded())
     }
     
     init(startTime: Date, startPosition: CLLocation) {

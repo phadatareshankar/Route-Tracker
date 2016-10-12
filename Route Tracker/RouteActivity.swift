@@ -8,12 +8,13 @@
 
 import Foundation
 import CoreLocation
+import MapKit
 
-class RouteActivity {
+struct RouteActivity {
     
     private (set) var laps: [Lap] = []
     
-    func newLap(location: CLLocation, startTime: Date = Date()) {
+    mutating func newLap(location: CLLocation, startTime: Date = Date()) {
         let lap = Lap(startTime: startTime, startPosition: location)
         laps.append(lap)
     }
@@ -32,9 +33,10 @@ class RouteActivity {
     
     func updatePosition(currentLocation: CLLocation) {
         currentLap?.logWayPoint(currentLocation: currentLocation)
+        print("Waypoints: \(currentLap?.waypoints)")
     }
     
-    func logLap(currentLocation: CLLocation) {
+    mutating func logLap(currentLocation: CLLocation) {
         currentLap?.end(finalPosition: currentLocation)
         guard let time = lastLap?.endedAt else { fatalError("Current lap: \(currentLap), should have an end time") }
         newLap(location: currentLocation, startTime: time)
@@ -60,7 +62,7 @@ class RouteActivity {
     
     var distance: Double {
         var total: Double = 0
-        for lap in laps { total += lap.distance }
+        for lap in laps { total += Double(lap.distance) }
         return total
     }
     
@@ -68,6 +70,10 @@ class RouteActivity {
         guard let start = startedAt else { return nil }
         let end = endedAt ?? Date()
         return end.timeIntervalSince(start) - pausedTime
+    }
+    
+    var completed: Bool {
+        return startedAt != nil && endedAt != nil
     }
     
     var startPosition: CLLocation? {
@@ -86,6 +92,15 @@ class RouteActivity {
     
     var lastPosition: CLLocation? {
         return laps.last?.waypoints.last
+    }
+    
+    var routeDrawing: MKPolyline {
+        var waypoints: [CLLocationCoordinate2D] = []
+        for lap in laps {
+            waypoints += lap.waypoints.map { $0.coordinate }
+        }
+        if waypoints.count > 0 { waypoints.removeFirst() }
+        return MKPolyline(coordinates: waypoints, count: waypoints.count)
     }
     
 }

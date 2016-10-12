@@ -16,11 +16,7 @@ class RouteTrackingViewController: UIViewController {
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var timeDisplay: UILabel!
     
-    @IBAction func rightButtonTapped(_ sender: UIButton) {
-        guard routeTracker.isTracking else { return }
-        routeTracker.newLap()
-        tableView.reloadData()
-    }
+    var gpsHorizontalAccuracy: Double = 100
     
     private var timer: Timer!
     
@@ -42,11 +38,13 @@ class RouteTrackingViewController: UIViewController {
     fileprivate func newLap() {
         routeTracker.newLap()
         tableView.reloadData()
+
     }
     
     fileprivate func end() {
         routeTracker.endActivity()
         timer.invalidate()
+        performSegue(withIdentifier: "Workout Complete", sender: self)
     }
     
     private func startDisplayTimer() {
@@ -60,7 +58,7 @@ class RouteTrackingViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupMapView()
-        
+        routeTracker.delegate = self
     }
     
     private func setupMapView() {
@@ -69,21 +67,33 @@ class RouteTrackingViewController: UIViewController {
     }
     
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        guard segue.identifier == "Workout Complete" else { return }
+        guard let navVC = segue.destination as? UINavigationController else { return }
+        guard let workoutCompleteVC = navVC.topViewController as? WorkoutCompleteViewController else { return }
+        
+        workoutCompleteVC.activity = routeTracker.getCompletedActivity()
+        workoutCompleteVC.mapView = MKMapView()
+        
     }
-    */
+ 
 
 }
 
 extension RouteTrackingViewController: OvalButtonDelegate {
     
     func buttonTapped(button: OvalButton) {
+        
+        if gpsHorizontalAccuracy > 50 {
+            let alert = UIAlertController(title: "GPS Signal Weak", message: "The GPS signal is too weak (error: +/- \(gpsHorizontalAccuracy)m) to give accurate readings. Please wait for a better signal", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            present(alert, animated: true, completion: nil)
+            return
+        }
         
         switch button.identifier {
             
@@ -135,14 +145,27 @@ extension RouteTrackingViewController: UITableViewDataSource {
         cell.titleLabel?.text = "Lap " + String(indexPath.row + 1)
         guard routeTracker.laps.count > 0 else { return cell }
         cell.durationLabel?.text =  TimerValue(seconds: routeTracker.laps[indexPath.row].duration).string
-        cell.distanceLabel.text = String(routeTracker.laps[indexPath.row].distance / 1000.00) + "km"
+        cell.distanceLabel.text = String(Double(routeTracker.laps[indexPath.row].distance) / 1000.00) + "km"
         
         return cell
     }
 }
 
+extension RouteTrackingViewController: ActivityManagerDelegate {
+    func updateMap() {
+        guard routeTracker.isTracking else { return }
+        mapView.add(routeTracker.routeActivity.routeDrawing)
+    }
+}
+
 extension RouteTrackingViewController: MKMapViewDelegate {
-    
+    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
+        
+        let renderer = MKPolylineRenderer(overlay: overlay)
+        renderer.strokeColor = UIColor.blue
+        renderer.lineWidth = 10.0
+        return renderer
+    }
 }
 
 struct TimerValue {

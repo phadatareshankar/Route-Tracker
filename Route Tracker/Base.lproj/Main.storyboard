@@ -21,7 +21,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="Nyo-1L-PFK">
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" showsScale="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Nyo-1L-PFK">
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="Nyo-1L-PFK" secondAttribute="height" multiplier="125:102" constant="1" id="fpR-Ei-e4b"/>
                                 </constraints>
@@ -42,19 +42,19 @@
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalCentering" alignment="bottom" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="Ar9-cf-2TA">
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00:00.000" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rz0-WV-qRT">
-                                                            <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="24"/>
+                                                            <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="18"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0 km" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i76-Hy-Xet">
-                                                            <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="24"/>
+                                                            <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="22"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                     </subviews>
                                                 </stackView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lap 1" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EkI-zW-OMc">
-                                                    <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="24"/>
+                                                    <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="20"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -134,11 +134,76 @@
                         <outlet property="rightButton" destination="Rjh-Gh-N1E" id="L3S-Ed-Olf"/>
                         <outlet property="tableView" destination="gPr-vS-B7O" id="FCU-ld-Blu"/>
                         <outlet property="timeDisplay" destination="l2g-pd-A0e" id="pMF-51-agE"/>
+                        <segue destination="9WY-6f-A9v" kind="presentation" identifier="Workout Complete" id="qgb-6O-kDS"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1375.2" y="-552.77361319340332"/>
+        </scene>
+        <!--Workout Complete View Controller-->
+        <scene sceneID="ZMY-0b-vxA">
+            <objects>
+                <viewController id="NwH-kE-2xc" customClass="WorkoutCompleteViewController" customModule="Route_Tracker" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="JSy-I5-K9h"/>
+                        <viewControllerLayoutGuide type="bottom" id="eeh-ye-6h5"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="IH0-d6-G2M">
+                        <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="0ga-SC-sit">
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="0ga-SC-sit" secondAttribute="height" multiplier="1:1" constant="1" id="6u1-Qv-kFd"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="AZb-An-Sn9"/>
+                                </connections>
+                            </mapView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="oh9-MA-Qv0">
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qK9-N4-BRa">
+                                        <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Distance" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dw1-wG-Qwg">
+                                        <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="eeh-ye-6h5" firstAttribute="top" secondItem="oh9-MA-Qv0" secondAttribute="bottom" id="29R-Py-S9H"/>
+                            <constraint firstItem="oh9-MA-Qv0" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="IH0-d6-G2M" secondAttribute="leadingMargin" id="DVN-tb-Kk9"/>
+                            <constraint firstItem="0ga-SC-sit" firstAttribute="centerX" secondItem="IH0-d6-G2M" secondAttribute="centerX" id="MBA-cA-mGM"/>
+                            <constraint firstItem="0ga-SC-sit" firstAttribute="top" secondItem="JSy-I5-K9h" secondAttribute="bottom" id="ZeC-iO-ncS"/>
+                            <constraint firstItem="0ga-SC-sit" firstAttribute="width" secondItem="IH0-d6-G2M" secondAttribute="width" id="ag9-Qp-q6Y"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="oh9-MA-Qv0" secondAttribute="trailing" id="jAI-0R-mmQ"/>
+                            <constraint firstItem="oh9-MA-Qv0" firstAttribute="top" secondItem="0ga-SC-sit" secondAttribute="bottom" constant="8" id="x3b-cd-AEG"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="hPO-GR-Z9R">
+                        <barButtonItem key="rightBarButtonItem" style="done" systemItem="done" id="Z3q-Xi-nXU">
+                            <connections>
+                                <action selector="doneTapped:" destination="NwH-kE-2xc" id="DYV-2c-TeB"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
+                    <connections>
+                        <outlet property="distanceLabel" destination="Dw1-wG-Qwg" id="awz-j1-orU"/>
+                        <outlet property="mapView" destination="0ga-SC-sit" id="jNZ-Yq-YIV"/>
+                        <outlet property="timeLabel" destination="qK9-N4-BRa" id="S2v-Mg-sF1"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="24U-zy-7Lg" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3372" y="-553.67316341829087"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="lQE-fA-Uf5">
@@ -157,6 +222,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xol-T7-M6q" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="277.60000000000002" y="-552.77361319340332"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="X5c-mR-kIG">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="9WY-6f-A9v" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="HBi-F0-5HP">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="NwH-kE-2xc" kind="relationship" relationship="rootViewController" id="HgV-cE-xGo"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="yNq-qN-SMT" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2432.8000000000002" y="-553.67316341829087"/>
         </scene>
     </scenes>
 </document>
