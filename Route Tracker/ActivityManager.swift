@@ -107,7 +107,7 @@ class ActivityManager: NSObject, CLLocationManagerDelegate {
 
         delegate?.gpsHorizontalAccuracy = currentLocation.horizontalAccuracy
 
-        guard currentLocation.horizontalAccuracy > 50 else { return }
+        guard currentLocation.horizontalAccuracy < 50 else { return }
         
         delegate?.updateMap()
         

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="b98-nP-Uf2">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="b98-nP-Uf2">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
@@ -32,36 +32,36 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="95" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="gPr-vS-B7O">
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Lap Detail" rowHeight="95" id="EBE-2m-kqS" customClass="LapDetailCell" customModule="Route_Tracker" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="95"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Lap Detail" rowHeight="60" id="EBE-2m-kqS" customClass="LapDetailCell" customModule="Route_Tracker" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="EBE-2m-kqS" id="z21-yr-ira">
-                                            <frame key="frameInset" width="375" height="94"/>
+                                            <frame key="frameInset" width="375" height="59.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalCentering" alignment="bottom" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="Ar9-cf-2TA">
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00:00.000" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rz0-WV-qRT">
-                                                            <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="18"/>
+                                                            <fontDescription key="fontDescription" name="Courier" family="Courier" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0 km" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i76-Hy-Xet">
-                                                            <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="22"/>
+                                                            <fontDescription key="fontDescription" name="Courier" family="Courier" pointSize="20"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                     </subviews>
                                                 </stackView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lap 1" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EkI-zW-OMc">
-                                                    <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="20"/>
+                                                    <fontDescription key="fontDescription" name="Courier" family="Courier" pointSize="20"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="Ar9-cf-2TA" firstAttribute="centerY" secondItem="z21-yr-ira" secondAttribute="centerY" id="D6V-BR-82E"/>
-                                                <constraint firstAttribute="leadingMargin" secondItem="EkI-zW-OMc" secondAttribute="leading" id="EPy-DT-jmA"/>
+                                                <constraint firstItem="EkI-zW-OMc" firstAttribute="leading" secondItem="z21-yr-ira" secondAttribute="leading" constant="24" id="EPy-DT-jmA"/>
                                                 <constraint firstItem="EkI-zW-OMc" firstAttribute="centerY" secondItem="z21-yr-ira" secondAttribute="centerY" id="N9r-6T-MxR"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="Ar9-cf-2TA" secondAttribute="trailing" id="sJZ-Kj-aVl"/>
                                             </constraints>
@@ -83,7 +83,6 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JYi-O1-bRe" customClass="OvalButton" customModule="Route_Tracker" customModuleProvider="target">
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="string" keyPath="labelText" value="Start"/>
                                             <userDefinedRuntimeAttribute type="string" keyPath="titleLabel" value="Start"/>
                                         </userDefinedRuntimeAttributes>
                                     </view>

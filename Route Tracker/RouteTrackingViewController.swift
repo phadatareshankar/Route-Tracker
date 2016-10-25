@@ -9,6 +9,8 @@
 import UIKit
 import MapKit
 
+// MARK: - Enum Declaration
+
 enum GoalType {
     case basic
     case distance
@@ -26,7 +28,23 @@ enum GoalType {
     }
 }
 
+// MARK: - Class Declaration
+
 class RouteTrackingViewController: UIViewController {
+    
+    // MARK: - Private Properties
+    
+    private var timer: Timer!
+    
+    fileprivate var goal: GoalType = .basic { didSet { title = goal.title } }
+    fileprivate var goalValue: Double!
+    fileprivate let routeTracker = ActivityManager()
+    
+    internal var gpsHorizontalAccuracy: Double = 100
+    
+   
+    // MARK: - Interface Builder Outlets
+    
     @IBOutlet weak var rightButton: OvalButton! { didSet { rightButton.delegate = self } }
     @IBOutlet weak var leftButton: OvalButton! { didSet { leftButton.delegate = self } }
     @IBOutlet weak var tableView: UITableView!
@@ -34,8 +52,16 @@ class RouteTrackingViewController: UIViewController {
     @IBOutlet weak var timeDisplay: UILabel!
     @IBOutlet weak var activityTypeBarButton: UIBarButtonItem!
     
-    var goal: GoalType = .basic { didSet { title = goal.title } }
-    var goalValue: Double!
+    // MARK: - View Controller Lifecycle
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        setupMapView()
+        routeTracker.delegate = self
+    }
+
+    
+    // MARK: - Interface Builder Actions / UI Actions
     
     @IBAction func activityTypeButtonTapped(_ sender: UIBarButtonItem) {
         let activityTypeAlert = UIAlertController(title: "Choose Goal", message: nil, preferredStyle: .actionSheet)
@@ -76,9 +102,8 @@ class RouteTrackingViewController: UIViewController {
         present(alert, animated: true, completion: nil)
     }
     
-    var gpsHorizontalAccuracy: Double = 100
     
-    private var timer: Timer!
+    // MARK: - Route Tracking Functions
     
     fileprivate func start() {
         routeTracker.startActivity()
@@ -107,22 +132,19 @@ class RouteTrackingViewController: UIViewController {
         performSegue(withIdentifier: "Workout Complete", sender: self)
     }
     
+    // MARK: - Helper Functions
+    
     private func startDisplayTimer() {
         timer = Timer.scheduledTimer(withTimeInterval: 0.001, repeats: true, block: { [unowned self] _ in
-            
-            var timeToDisplay: Double
-            self.goal == .time ? (timeToDisplay = self.goalValue - self.routeTracker.duration) : (timeToDisplay = self.routeTracker.duration)
-            
-            self.timeDisplay.text = TimerValue(seconds: timeToDisplay).string
+            self.displayUpdatedTime()
             })
     }
     
-    fileprivate let routeTracker = ActivityManager()
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        setupMapView()
-        routeTracker.delegate = self
+    fileprivate func displayUpdatedTime() {
+        var timeToDisplay: Double
+        self.goal == .time ? (timeToDisplay = self.goalValue - self.routeTracker.duration) : (timeToDisplay = self.routeTracker.duration)
+        
+        self.timeDisplay.text = TimerValue(seconds: timeToDisplay).string
     }
     
     private func setupMapView() {
@@ -130,7 +152,6 @@ class RouteTrackingViewController: UIViewController {
         mapView.userTrackingMode = .follow
     }
     
-
     
     // MARK: - Navigation
 
@@ -200,7 +221,6 @@ extension RouteTrackingViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         return max(routeTracker.laps.count - 1, 0) // so it never shows current lap
-        
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -217,7 +237,6 @@ extension RouteTrackingViewController: UITableViewDataSource {
 
 extension RouteTrackingViewController: ActivityManagerDelegate {
     func updateMap() {
-        
         updateGoal()
         
         guard routeTracker.isTracking else { return }
@@ -227,15 +246,21 @@ extension RouteTrackingViewController: ActivityManagerDelegate {
     func updateGoal() {
         var goalRemaining: Double
         
-        if goal == .distance {
+        switch goal {
+        
+        case .distance:
             goalRemaining = goalValue - routeTracker.distance
-        } else {
+            
+        case .time:
             goalRemaining = goalValue - routeTracker.duration
+            
+        case .basic:
+            goalRemaining = 0
         }
         
-        if goalRemaining < 0 {
-            end()
-        }
+        guard goalRemaining < 0 else { return }
+        
+        end()
     }
 }
 
@@ -287,5 +312,8 @@ extension RouteTrackingViewController: UITextFieldDelegate {
         } else {
             goalValue = Double(text)! * 60
         }
+        
+        displayUpdatedTime()
+        
     }
 }
