@@ -10,16 +10,25 @@ import UIKit
 import MapKit
 
 class WorkoutCompleteViewController: UIViewController {
+    
+    
+    // MARK: - API
+    
+    var activity: RouteActivity!
+    
+    
+    // MARK: - Interface Builder Actions & Outlets
    
     @IBAction func doneTapped(_ sender: UIBarButtonItem) {
         dismiss(animated: true, completion: nil)
     }
     
-    var activity: RouteActivity!
-    
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var distanceLabel: UILabel!
+    
+    
+    // MARK: - View Controller Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,12 +38,19 @@ class WorkoutCompleteViewController: UIViewController {
         setupMapView()
     }
     
+    
+    // MARK: - Helper Functions
+    
     private func setupMapView() {
         mapView.delegate = self
         mapView.add(activity.routeDrawing)
+        mapView.showAnnotations([activity.routeDrawing], animated: false)
     }
 
 }
+
+
+// MARK: - Map View Delegate
 
 extension WorkoutCompleteViewController: MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {

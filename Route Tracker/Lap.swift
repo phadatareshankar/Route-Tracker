@@ -12,19 +12,33 @@ import CoreLocation
 
 class Lap {
     
+    
+    // MARK: - Variables
+    
     var startedAt: Date
     var endedAt: Date?
     
+    var pausedTime: TimeInterval = 0
     var pausedAt: Date?
     
-    var pausedTime: TimeInterval = 0
+    var waypoints: [CLLocation]
+    
+   
+    // MARK: - Initialization
+    
+    init(startTime: Date, startPosition: CLLocation) {
+        self.startedAt = startTime
+        self.waypoints = [startPosition]
+    }
+    
+    
+    // MARK: - Computed Variables
     
     var duration: TimeInterval {
         let end = endedAt ?? Date()
         return end.timeIntervalSince(startedAt) - pausedTime
     }
     
-    var waypoints: [CLLocation]
     
     var distance: Int {
         var total: Double = 0
@@ -39,10 +53,8 @@ class Lap {
         return Int(total.rounded())
     }
     
-    init(startTime: Date, startPosition: CLLocation) {
-        self.startedAt = startTime
-        self.waypoints = [startPosition]
-    }
+    
+    // MARK: - Functions
     
     func logWayPoint(currentLocation: CLLocation) {
         waypoints.append(currentLocation)

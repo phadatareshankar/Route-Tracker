@@ -14,37 +14,19 @@ protocol ActivityManagerDelegate: class {
     var gpsHorizontalAccuracy: Double { get set }
 }
 
-class ActivityManager: NSObject, CLLocationManagerDelegate {
+class ActivityManager: NSObject {
     
-    weak var delegate: ActivityManagerDelegate?
+    // MARK: - API
     
     var isTracking: Bool { return routeActivity.active }
-    
-    private let locationManager = CLLocationManager()
-    
-    private var currentLocation: CLLocation!
-    private (set) var routeActivity = RouteActivity()
-    private var previousActivities: [RouteActivity] = []
-    
     var laps: [Lap] { return routeActivity.laps }
     var duration: TimeInterval { return routeActivity.duration ?? 0 }
     var currentLapDuration: TimeInterval? { return routeActivity.currentLap?.duration }
     var distance: Double { return routeActivity.distance }
     
-    override init() {
-        super.init()
-        locationManager.delegate = self
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        
-        if !authorized {
-            requestAuthorization()
-            return
-        }
-        
-        guard CLLocationManager.locationServicesEnabled() else { return }
-        
-        locationManager.requestLocation()
-    }
+    weak var delegate: ActivityManagerDelegate?
+    
+    // MARK: Activity Control - Start / Pause / Resume / End
     
     func startActivity() {
         locationManager.startUpdatingLocation()
@@ -80,9 +62,39 @@ class ActivityManager: NSObject, CLLocationManagerDelegate {
         return last
     }
     
+    
+    // MARK: - Initialization
+    
+    override init() {
+        super.init()
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        
+        if !authorized {
+            requestAuthorization()
+            return
+        }
+        
+        guard CLLocationManager.locationServicesEnabled() else { return }
+        
+        locationManager.requestLocation()
+    }
+    
+    
+    // MARK: - Private Properties
+    
+    private (set) var routeActivity = RouteActivity()
+    
+    fileprivate let locationManager = CLLocationManager()
+    fileprivate var currentLocation: CLLocation!
+    private var previousActivities: [RouteActivity] = []
+    
     private var authorized: Bool {
         return CLLocationManager.authorizationStatus() == .authorizedAlways || CLLocationManager.authorizationStatus() == .authorizedWhenInUse
     }
+    
+    
+    // MARK: - Private functions
     
     private func requestAuthorization() {
         
@@ -97,16 +109,20 @@ class ActivityManager: NSObject, CLLocationManagerDelegate {
             break
         }
     }
-    
+}
+
+// MARK: - Core Location Manager Delegate
+
+extension ActivityManager: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         locationManager.requestLocation()
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         currentLocation = locations.last
-
+        
         delegate?.gpsHorizontalAccuracy = currentLocation.horizontalAccuracy
-
+        
         guard currentLocation.horizontalAccuracy < 50 else { return }
         
         delegate?.updateMap()
@@ -119,6 +135,4 @@ class ActivityManager: NSObject, CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         print("Failed to update location with error: \(error)")
     }
-    
-    
 }

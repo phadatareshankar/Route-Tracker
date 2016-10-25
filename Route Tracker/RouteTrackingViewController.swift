@@ -40,6 +40,10 @@ class RouteTrackingViewController: UIViewController {
     fileprivate var goalValue: Double!
     fileprivate let routeTracker = ActivityManager()
     
+    fileprivate struct Constants {
+        static let gpsMaxUncertainty: Double = 300
+    }
+    
     internal var gpsHorizontalAccuracy: Double = 100
     
    
@@ -173,7 +177,7 @@ extension RouteTrackingViewController: OvalButtonDelegate {
     
     func buttonTapped(button: OvalButton) {
         
-        if gpsHorizontalAccuracy > 50 {
+        if gpsHorizontalAccuracy > Constants.gpsMaxUncertainty {
             let alert = UIAlertController(title: "GPS Signal Weak", message: "The GPS signal is too weak (error: +/- \(gpsHorizontalAccuracy)m) to give accurate readings. Please wait for a better signal", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
             present(alert, animated: true, completion: nil)
