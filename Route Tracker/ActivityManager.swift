@@ -22,6 +22,8 @@ class ActivityManager: NSObject {
     var laps: [Lap] { return routeActivity.laps }
     var duration: TimeInterval { return routeActivity.duration ?? 0 }
     var currentLapDuration: TimeInterval? { return routeActivity.currentLap?.duration }
+    var routeActivity = RouteActivity()
+    
     var distance: Double { return routeActivity.distance }
     
     weak var delegate: ActivityManagerDelegate?
@@ -82,8 +84,6 @@ class ActivityManager: NSObject {
     
     
     // MARK: - Private Properties
-    
-    private (set) var routeActivity = RouteActivity()
     
     fileprivate let locationManager = CLLocationManager()
     fileprivate var currentLocation: CLLocation!

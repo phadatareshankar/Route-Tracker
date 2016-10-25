@@ -15,6 +15,7 @@ class WorkoutCompleteViewController: UIViewController {
     // MARK: - API
     
     var activity: RouteActivity!
+    var overlays: [MKOverlay]!
     
     
     // MARK: - Interface Builder Actions & Outlets
@@ -43,8 +44,17 @@ class WorkoutCompleteViewController: UIViewController {
     
     private func setupMapView() {
         mapView.delegate = self
-        mapView.add(activity.routeDrawing)
-        mapView.showAnnotations([activity.routeDrawing], animated: false)
+        //mapView.add(activity.routeDrawing)
+        
+        for overlay in overlays {
+            mapView.add(overlay)
+        }
+        
+        let span = MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05)
+        let lastLocation = activity.laps.last!.waypoints.last!.coordinate
+        let region = MKCoordinateRegion(center: lastLocation, span: span)
+        
+        mapView.region = region
     }
 
 }

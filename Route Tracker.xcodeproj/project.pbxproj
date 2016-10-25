@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		908F6B6E1DAE62E000708900 /* mapstogpx20161012_122343.gpx in Resources */ = {isa = PBXBuildFile; fileRef = 908F6B6D1DAE62E000708900 /* mapstogpx20161012_122343.gpx */; };
+		908F6B6E1DAE62E000708900 /* Simulated Route.gpx in Resources */ = {isa = PBXBuildFile; fileRef = 908F6B6D1DAE62E000708900 /* Simulated Route.gpx */; };
 		90AC5FC51DA69CD500B3FF6F /* LapDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90AC5FC41DA69CD500B3FF6F /* LapDetailCell.swift */; };
 		90C1FD4F1DA642FD003A5CC1 /* OvalButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90C1FD4E1DA642FD003A5CC1 /* OvalButton.swift */; };
 		90CB0F301DAE5ABE004B1611 /* WorkoutCompleteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90CB0F2F1DAE5ABE004B1611 /* WorkoutCompleteViewController.swift */; };
@@ -22,7 +22,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		908F6B6D1DAE62E000708900 /* mapstogpx20161012_122343.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = mapstogpx20161012_122343.gpx; sourceTree = "<group>"; };
+		908F6B6D1DAE62E000708900 /* Simulated Route.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = "Simulated Route.gpx"; path = "../Simulated Route.gpx"; sourceTree = "<group>"; };
 		90AC5FC41DA69CD500B3FF6F /* LapDetailCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LapDetailCell.swift; sourceTree = "<group>"; };
 		90C1FD4E1DA642FD003A5CC1 /* OvalButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OvalButton.swift; sourceTree = "<group>"; };
 		90CB0F2F1DAE5ABE004B1611 /* WorkoutCompleteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkoutCompleteViewController.swift; sourceTree = "<group>"; };
@@ -49,10 +49,57 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9076A1B61DBF78E700C1203F /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				908F6B6D1DAE62E000708900 /* Simulated Route.gpx */,
+				90F714361DA50C6100002D5C /* AppDelegate.swift */,
+				90F714421DA50C6100002D5C /* Info.plist */,
+				90F7143D1DA50C6100002D5C /* Assets.xcassets */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		9076A1B71DBF78FB00C1203F /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				90F7143A1DA50C6100002D5C /* Main.storyboard */,
+				90F7143F1DA50C6100002D5C /* LaunchScreen.storyboard */,
+			);
+			name = Storyboards;
+			sourceTree = "<group>";
+		};
+		9076A1B81DBF794D00C1203F /* Custom Views */ = {
+			isa = PBXGroup;
+			children = (
+				90C1FD4E1DA642FD003A5CC1 /* OvalButton.swift */,
+			);
+			name = "Custom Views";
+			sourceTree = "<group>";
+		};
+		9076A1B91DBF796900C1203F /* Activity */ = {
+			isa = PBXGroup;
+			children = (
+				90F7144E1DA526B900002D5C /* ActivityManager.swift */,
+				90AC5FC41DA69CD500B3FF6F /* LapDetailCell.swift */,
+				90F7144A1DA5120B00002D5C /* Lap.swift */,
+				90F7144C1DA513CC00002D5C /* RouteActivity.swift */,
+			);
+			name = Activity;
+			sourceTree = "<group>";
+		};
+		9076A1BA1DBF798800C1203F /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				90CB0F2F1DAE5ABE004B1611 /* WorkoutCompleteViewController.swift */,
+				90F714481DA5106700002D5C /* RouteTrackingViewController.swift */,
+			);
+			name = "View Controllers";
+			sourceTree = "<group>";
+		};
 		90F7142A1DA50C6000002D5C = {
 			isa = PBXGroup;
 			children = (
-				908F6B6D1DAE62E000708900 /* mapstogpx20161012_122343.gpx */,
 				90F714351DA50C6000002D5C /* Route Tracker */,
 				90F714341DA50C6000002D5C /* Products */,
 			);
@@ -69,18 +116,11 @@
 		90F714351DA50C6000002D5C /* Route Tracker */ = {
 			isa = PBXGroup;
 			children = (
-				90F714361DA50C6100002D5C /* AppDelegate.swift */,
-				90F7143A1DA50C6100002D5C /* Main.storyboard */,
-				90CB0F2F1DAE5ABE004B1611 /* WorkoutCompleteViewController.swift */,
-				90F714481DA5106700002D5C /* RouteTrackingViewController.swift */,
-				90F7143D1DA50C6100002D5C /* Assets.xcassets */,
-				90AC5FC41DA69CD500B3FF6F /* LapDetailCell.swift */,
-				90F7143F1DA50C6100002D5C /* LaunchScreen.storyboard */,
-				90F714421DA50C6100002D5C /* Info.plist */,
-				90F7144A1DA5120B00002D5C /* Lap.swift */,
-				90F7144C1DA513CC00002D5C /* RouteActivity.swift */,
-				90F7144E1DA526B900002D5C /* ActivityManager.swift */,
-				90C1FD4E1DA642FD003A5CC1 /* OvalButton.swift */,
+				9076A1B91DBF796900C1203F /* Activity */,
+				9076A1B81DBF794D00C1203F /* Custom Views */,
+				9076A1B71DBF78FB00C1203F /* Storyboards */,
+				9076A1B61DBF78E700C1203F /* Supporting Files */,
+				9076A1BA1DBF798800C1203F /* View Controllers */,
 			);
 			path = "Route Tracker";
 			sourceTree = "<group>";
@@ -145,7 +185,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				908F6B6E1DAE62E000708900 /* mapstogpx20161012_122343.gpx in Resources */,
+				908F6B6E1DAE62E000708900 /* Simulated Route.gpx in Resources */,
 				90F714411DA50C6100002D5C /* LaunchScreen.storyboard in Resources */,
 				90F7143E1DA50C6100002D5C /* Assets.xcassets in Resources */,
 				90F7143C1DA50C6100002D5C /* Main.storyboard in Resources */,

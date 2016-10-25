@@ -110,8 +110,15 @@ struct RouteActivity {
     
     // MARK: - Location
     
-    func updatePosition(currentLocation: CLLocation) {
+    var maxDeltaLatitude: CLLocationDegrees = 0
+    var maxDeltaLongitude: CLLocationDegrees = 0
+    
+    mutating func updatePosition(currentLocation: CLLocation) {
         currentLap?.logWayPoint(currentLocation: currentLocation)
+        guard let firstCoordinate = laps.first?.waypoints.first?.coordinate else { return }
+        let lastCoordinate = currentLocation.coordinate
+        maxDeltaLatitude = max(maxDeltaLatitude, (lastCoordinate.latitude - firstCoordinate.latitude))
+        maxDeltaLongitude = max(maxDeltaLongitude, (lastCoordinate.longitude - firstCoordinate.longitude))
         //print("Waypoints: \(currentLap?.waypoints)")
     }
     

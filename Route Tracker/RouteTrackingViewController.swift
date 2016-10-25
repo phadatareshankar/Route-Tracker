@@ -167,7 +167,10 @@ class RouteTrackingViewController: UIViewController {
         
         workoutCompleteVC.activity = routeTracker.getCompletedActivity()
         workoutCompleteVC.mapView = MKMapView()
+        workoutCompleteVC.overlays = mapView.overlays
         
+        tableView.reloadData()
+        mapView.removeOverlays(mapView.overlays)
     }
  
 
