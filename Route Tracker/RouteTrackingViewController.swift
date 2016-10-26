@@ -114,12 +114,12 @@ class RouteTrackingViewController: UIViewController {
         startDisplayTimer()
     }
     
-    fileprivate func pause() {
+    func pause() {
         routeTracker.pauseActivity()
         timer.invalidate()
     }
     
-    fileprivate func resume() {
+    func resume() {
         routeTracker.resumeActivity()
         startDisplayTimer()
     }
@@ -130,7 +130,7 @@ class RouteTrackingViewController: UIViewController {
 
     }
     
-    fileprivate func end() {
+    func end() {
         routeTracker.endActivity()
         timer.invalidate()
         performSegue(withIdentifier: "Workout Complete", sender: self)
@@ -216,11 +216,11 @@ extension RouteTrackingViewController: OvalButtonDelegate {
         default:
             break
         }
-        
-        func updateButtonForStart() {
-            guard routeTracker.isTracking else { return }
-            leftButton.configure(title: "Pause")
-        }
+    }
+    
+    func updateButtonForStart() {
+        guard routeTracker.isTracking else { return }
+        leftButton.configure(title: "Pause")
     }
 }
 

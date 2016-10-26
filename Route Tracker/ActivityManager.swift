@@ -34,11 +34,13 @@ class ActivityManager: NSObject {
         locationManager.startUpdatingLocation()
         guard let location = currentLocation else { return }
         routeActivity.newLap(location: location)
+        UserDefaults.shared.set(true, forKey: "isWorkoutActive")
     }
     
     func pauseActivity() {
         locationManager.stopUpdatingLocation()
         routeActivity.pause()
+        UserDefaults.shared.set(true, forKey: "isWorkoutPaused")
     }
     
     func resumeActivity() {

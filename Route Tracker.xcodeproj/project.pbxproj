@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		907E39291DC0FA15003D622F /* IntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 907E39281DC0FA15003D622F /* IntentHandler.swift */; };
+		907E392D1DC0FA15003D622F /* Siri Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 907E39261DC0FA15003D622F /* Siri Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		907E39331DC100F9003D622F /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 907E39321DC100F9003D622F /* Extensions.swift */; };
+		907E39351DC101F4003D622F /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 907E39321DC100F9003D622F /* Extensions.swift */; };
 		908F6B6E1DAE62E000708900 /* Simulated Route.gpx in Resources */ = {isa = PBXBuildFile; fileRef = 908F6B6D1DAE62E000708900 /* Simulated Route.gpx */; };
 		90AC5FC51DA69CD500B3FF6F /* LapDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90AC5FC41DA69CD500B3FF6F /* LapDetailCell.swift */; };
 		90C1FD4F1DA642FD003A5CC1 /* OvalButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90C1FD4E1DA642FD003A5CC1 /* OvalButton.swift */; };
@@ -21,7 +25,37 @@
 		90F7144F1DA526B900002D5C /* ActivityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90F7144E1DA526B900002D5C /* ActivityManager.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		907E392B1DC0FA15003D622F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 90F7142B1DA50C6000002D5C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 907E39251DC0FA15003D622F;
+			remoteInfo = "Siri Extension";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		907E39311DC0FA15003D622F /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				907E392D1DC0FA15003D622F /* Siri Extension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		907E39211DC0F984003D622F /* Route Tracker.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Route Tracker.entitlements"; sourceTree = "<group>"; };
+		907E39261DC0FA15003D622F /* Siri Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Siri Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		907E39281DC0FA15003D622F /* IntentHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntentHandler.swift; sourceTree = "<group>"; };
+		907E392A1DC0FA15003D622F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		907E39321DC100F9003D622F /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		907E39341DC10184003D622F /* Siri Extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Siri Extension.entitlements"; sourceTree = "<group>"; };
 		908F6B6D1DAE62E000708900 /* Simulated Route.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = "Simulated Route.gpx"; path = "../Simulated Route.gpx"; sourceTree = "<group>"; };
 		90AC5FC41DA69CD500B3FF6F /* LapDetailCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LapDetailCell.swift; sourceTree = "<group>"; };
 		90C1FD4E1DA642FD003A5CC1 /* OvalButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OvalButton.swift; sourceTree = "<group>"; };
@@ -39,6 +73,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		907E39231DC0FA15003D622F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		90F714301DA50C6000002D5C /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -56,6 +97,7 @@
 				90F714361DA50C6100002D5C /* AppDelegate.swift */,
 				90F714421DA50C6100002D5C /* Info.plist */,
 				90F7143D1DA50C6100002D5C /* Assets.xcassets */,
+				907E39321DC100F9003D622F /* Extensions.swift */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -97,10 +139,21 @@
 			name = "View Controllers";
 			sourceTree = "<group>";
 		};
+		907E39271DC0FA15003D622F /* Siri Extension */ = {
+			isa = PBXGroup;
+			children = (
+				907E39341DC10184003D622F /* Siri Extension.entitlements */,
+				907E39281DC0FA15003D622F /* IntentHandler.swift */,
+				907E392A1DC0FA15003D622F /* Info.plist */,
+			);
+			path = "Siri Extension";
+			sourceTree = "<group>";
+		};
 		90F7142A1DA50C6000002D5C = {
 			isa = PBXGroup;
 			children = (
 				90F714351DA50C6000002D5C /* Route Tracker */,
+				907E39271DC0FA15003D622F /* Siri Extension */,
 				90F714341DA50C6000002D5C /* Products */,
 			);
 			sourceTree = "<group>";
@@ -109,6 +162,7 @@
 			isa = PBXGroup;
 			children = (
 				90F714331DA50C6000002D5C /* Route Tracker.app */,
+				907E39261DC0FA15003D622F /* Siri Extension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -116,6 +170,7 @@
 		90F714351DA50C6000002D5C /* Route Tracker */ = {
 			isa = PBXGroup;
 			children = (
+				907E39211DC0F984003D622F /* Route Tracker.entitlements */,
 				9076A1B91DBF796900C1203F /* Activity */,
 				9076A1B81DBF794D00C1203F /* Custom Views */,
 				9076A1B71DBF78FB00C1203F /* Storyboards */,
@@ -128,6 +183,23 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		907E39251DC0FA15003D622F /* Siri Extension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 907E392E1DC0FA15003D622F /* Build configuration list for PBXNativeTarget "Siri Extension" */;
+			buildPhases = (
+				907E39221DC0FA15003D622F /* Sources */,
+				907E39231DC0FA15003D622F /* Frameworks */,
+				907E39241DC0FA15003D622F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Siri Extension";
+			productName = "Siri Extension";
+			productReference = 907E39261DC0FA15003D622F /* Siri Extension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		90F714321DA50C6000002D5C /* Route Tracker */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 90F714451DA50C6100002D5C /* Build configuration list for PBXNativeTarget "Route Tracker" */;
@@ -135,10 +207,12 @@
 				90F7142F1DA50C6000002D5C /* Sources */,
 				90F714301DA50C6000002D5C /* Frameworks */,
 				90F714311DA50C6000002D5C /* Resources */,
+				907E39311DC0FA15003D622F /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				907E392C1DC0FA15003D622F /* PBXTargetDependency */,
 			);
 			name = "Route Tracker";
 			productName = "Route Tracker";
@@ -151,14 +225,32 @@
 		90F7142B1DA50C6000002D5C /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0800;
+				LastSwiftUpdateCheck = 0810;
 				LastUpgradeCheck = 0800;
 				ORGANIZATIONNAME = "Kenechi Okolo";
 				TargetAttributes = {
+					907E39251DC0FA15003D622F = {
+						CreatedOnToolsVersion = 8.1;
+						DevelopmentTeam = B4J3CPWU5B;
+						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
+						};
+					};
 					90F714321DA50C6000002D5C = {
 						CreatedOnToolsVersion = 8.0;
 						DevelopmentTeam = B4J3CPWU5B;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
+							com.apple.Siri = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -176,11 +268,19 @@
 			projectRoot = "";
 			targets = (
 				90F714321DA50C6000002D5C /* Route Tracker */,
+				907E39251DC0FA15003D622F /* Siri Extension */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		907E39241DC0FA15003D622F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		90F714311DA50C6000002D5C /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -195,11 +295,21 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		907E39221DC0FA15003D622F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				907E39291DC0FA15003D622F /* IntentHandler.swift in Sources */,
+				907E39351DC101F4003D622F /* Extensions.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		90F7142F1DA50C6000002D5C /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				90F7144D1DA513CC00002D5C /* RouteActivity.swift in Sources */,
+				907E39331DC100F9003D622F /* Extensions.swift in Sources */,
 				90F7144F1DA526B900002D5C /* ActivityManager.swift in Sources */,
 				90F7144B1DA5120B00002D5C /* Lap.swift in Sources */,
 				90CB0F301DAE5ABE004B1611 /* WorkoutCompleteViewController.swift in Sources */,
@@ -211,6 +321,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		907E392C1DC0FA15003D622F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 907E39251DC0FA15003D622F /* Siri Extension */;
+			targetProxy = 907E392B1DC0FA15003D622F /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		90F7143A1DA50C6100002D5C /* Main.storyboard */ = {
@@ -232,6 +350,36 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		907E392F1DC0FA15003D622F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = "Siri Extension/Siri Extension.entitlements";
+				DEVELOPMENT_TEAM = B4J3CPWU5B;
+				INFOPLIST_FILE = "Siri Extension/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.kenechilearnscode.Route-Tracker.Siri-Extension";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		907E39301DC0FA15003D622F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = "Siri Extension/Siri Extension.entitlements";
+				DEVELOPMENT_TEAM = B4J3CPWU5B;
+				INFOPLIST_FILE = "Siri Extension/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.kenechilearnscode.Route-Tracker.Siri-Extension";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
 		90F714431DA50C6100002D5C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -326,7 +474,9 @@
 		90F714461DA50C6100002D5C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "Route Tracker/Route Tracker.entitlements";
 				DEVELOPMENT_TEAM = B4J3CPWU5B;
 				INFOPLIST_FILE = "Route Tracker/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -339,7 +489,9 @@
 		90F714471DA50C6100002D5C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "Route Tracker/Route Tracker.entitlements";
 				DEVELOPMENT_TEAM = B4J3CPWU5B;
 				INFOPLIST_FILE = "Route Tracker/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -352,6 +504,14 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		907E392E1DC0FA15003D622F /* Build configuration list for PBXNativeTarget "Siri Extension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				907E392F1DC0FA15003D622F /* Debug */,
+				907E39301DC0FA15003D622F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		90F7142E1DA50C6000002D5C /* Build configuration list for PBXProject "Route Tracker" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
