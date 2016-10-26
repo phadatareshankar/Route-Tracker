@@ -109,7 +109,7 @@ class RouteTrackingViewController: UIViewController {
     
     // MARK: - Route Tracking Functions
     
-    fileprivate func start() {
+    func start() {
         routeTracker.startActivity()
         startDisplayTimer()
     }
@@ -139,12 +139,11 @@ class RouteTrackingViewController: UIViewController {
     // MARK: - Helper Functions
     
     private func startDisplayTimer() {
-        timer = Timer.scheduledTimer(withTimeInterval: 0.001, repeats: true, block: { [unowned self] _ in
-            self.displayUpdatedTime()
-            })
+        timer = Timer.scheduledTimer(timeInterval: 0.001, target: self, selector: #selector(displayUpdatedTime), userInfo: nil, repeats: true)
+        
     }
     
-    fileprivate func displayUpdatedTime() {
+    @objc fileprivate func displayUpdatedTime() {
         var timeToDisplay: Double
         self.goal == .time ? (timeToDisplay = self.goalValue - self.routeTracker.duration) : (timeToDisplay = self.routeTracker.duration)
         
@@ -216,6 +215,11 @@ extension RouteTrackingViewController: OvalButtonDelegate {
             
         default:
             break
+        }
+        
+        func updateButtonForStart() {
+            guard routeTracker.isTracking else { return }
+            leftButton.configure(title: "Pause")
         }
     }
 }
