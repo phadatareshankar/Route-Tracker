@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4AFC57BC1EA35CD100B5A21B /* norrebro.gpx in Resources */ = {isa = PBXBuildFile; fileRef = 4AFC57BB1EA35CD100B5A21B /* norrebro.gpx */; };
 		907E39291DC0FA15003D622F /* IntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 907E39281DC0FA15003D622F /* IntentHandler.swift */; };
 		907E392D1DC0FA15003D622F /* Siri Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 907E39261DC0FA15003D622F /* Siri Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		907E39331DC100F9003D622F /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 907E39321DC100F9003D622F /* Extensions.swift */; };
@@ -50,6 +51,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		4AFC57BB1EA35CD100B5A21B /* norrebro.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = norrebro.gpx; sourceTree = "<group>"; };
 		907E39211DC0F984003D622F /* Route Tracker.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Route Tracker.entitlements"; sourceTree = "<group>"; };
 		907E39261DC0FA15003D622F /* Siri Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Siri Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		907E39281DC0FA15003D622F /* IntentHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntentHandler.swift; sourceTree = "<group>"; };
@@ -93,6 +95,7 @@
 		9076A1B61DBF78E700C1203F /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				4AFC57BB1EA35CD100B5A21B /* norrebro.gpx */,
 				908F6B6D1DAE62E000708900 /* Simulated Route.gpx */,
 				90F714361DA50C6100002D5C /* AppDelegate.swift */,
 				90F714421DA50C6100002D5C /* Info.plist */,
@@ -226,7 +229,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0810;
-				LastUpgradeCheck = 0800;
+				LastUpgradeCheck = 0830;
 				ORGANIZATIONNAME = "Kenechi Okolo";
 				TargetAttributes = {
 					907E39251DC0FA15003D622F = {
@@ -285,6 +288,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4AFC57BC1EA35CD100B5A21B /* norrebro.gpx in Resources */,
 				908F6B6E1DAE62E000708900 /* Simulated Route.gpx in Resources */,
 				90F714411DA50C6100002D5C /* LaunchScreen.storyboard in Resources */,
 				90F7143E1DA50C6100002D5C /* Assets.xcassets in Resources */,
@@ -398,6 +402,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -447,6 +452,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -511,6 +517,7 @@
 				907E39301DC0FA15003D622F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		90F7142E1DA50C6000002D5C /* Build configuration list for PBXProject "Route Tracker" */ = {
 			isa = XCConfigurationList;

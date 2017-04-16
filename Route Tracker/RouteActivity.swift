@@ -103,7 +103,7 @@ struct RouteActivity {
     
     mutating func logLap(currentLocation: CLLocation) {
         currentLap?.end(finalPosition: currentLocation)
-        guard let time = lastLap?.endedAt else { fatalError("Current lap: \(currentLap), should have an end time") }
+        guard let time = lastLap?.endedAt else { fatalError("Current lap: \(String(describing: currentLap)), should have an end time") }
         newLap(location: currentLocation, startTime: time)
     }
     

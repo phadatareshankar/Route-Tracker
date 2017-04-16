@@ -22,7 +22,7 @@ class IntentHandler: INExtension, INStartWorkoutIntentHandling  {
             return
         }
         
-        guard let spokenPhrase = intent.workoutName?.spokenPhrase else { return }
+        guard (intent.workoutName?.spokenPhrase) != nil else { return }
         
         
         let response = INStartWorkoutIntentResponse(code: .continueInApp, userActivity: nil)
